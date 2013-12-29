@@ -16,10 +16,6 @@ describe("format.js", function() {
   });
 
   describe("%d", function() {
-    it("'This is %d'.format(5) === 'This is 5'", function() {
-      expect("This is %d".format(5)).to.equal('This is 5');
-    });
-
     it("'This is %d'.format(10) === 'This is 10'", function() {
       expect("This is %d".format(10)).to.equal('This is 10');
     });
@@ -39,7 +35,48 @@ describe("format.js", function() {
     it("'This is %03d and %05d'.format(1, 123) === 'This is 001 and 00123'", function() {
       expect('This is %03d and %05d'.format(1, 123)).to.equal('This is 001 and 00123');
     });
+
+    it("'[%5d]'.format(123) === '[  123]'", function() {
+      expect('[%5d]'.format(123)).to.equal('[  123]');
+    });
+
+    it("'[%-5d]'.format(123) === '[123  ]'", function() {
+      expect('[%-5d]'.format(123)).to.equal('[123  ]');
+    });
   });
+
+  describe("%s", function(){
+    it("'This is %s'.format('a pen') === 'This is a pen'", function() {
+      expect('This is %s'.format('a pen')).to.equal('This is a pen');
+    });
+    it("'This is %s %s'.format('a', 'pen') === 'This is a pen'", function() {
+      expect('This is %s %s'.format('a', 'pen')).to.equal('This is a pen');
+    });
+    it("'This %s %s %s'.format('is', 'a', 'pen') === 'This is a pen'", function() {
+      expect('This %s %s %s'.format('is', 'a', 'pen')).to.equal('This is a pen');
+    });
+    it("'[%5s]'.format('abc') === '[  abc]'", function() {
+      expect('[%5s]'.format('abc')).to.equal('[  abc]');
+    });
+    it("'[%-5s]'.format('abc') === '[abc  ]'", function() {
+      expect('[%-5s]'.format('abc')).to.equal('[abc  ]');
+    });
+
+    it("'[%.4s]'.format('abcde') === '[abcd]'", function() {
+      expect('[%.4s]'.format('abcde')).to.equal('[abcd]');
+    });
+    it("'[%5.4s]'.format('abcde') === '[ abcd]'", function() {
+      expect('[%5.4s]'.format('abcde')).to.equal('[ abcd]');
+    });
+    it("'[%-5.4s]'.format('abcde') === '[abcd ]'", function() {
+      expect('[%-5.4s]'.format('abcde')).to.equal('[abcd ]');
+    });
+    it("'[%-5.4s]'.format('あいうえお') === '[あいうえ ]'", function() {
+      expect('[%-5.4s]'.format('あいうえお')).to.equal('[あいうえ ]');
+    });
+  });
+
+
 
   describe("%b", function(){});
   describe("%c", function(){});
@@ -47,7 +84,6 @@ describe("format.js", function() {
   describe("%u", function(){}); // iru ?
   describe("%f", function(){});
   describe("%o", function(){});
-  describe("%s", function(){});
   describe("%x", function(){});
   describe("%X", function(){});
   describe("%t", function(){});
