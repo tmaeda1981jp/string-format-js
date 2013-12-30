@@ -87,11 +87,17 @@ describe("format.js", function() {
       expect('123 => %b'.format(123)).to.equal('123 => 1111011');
     });
   });
+
+  describe("%x", function() {
+    it("'123 => %x'.format(123) === '123 => 7b", function() {
+      expect('123 => %x'.format(123)).to.equal('123 => 7b');
+    });
+  });
+
   describe("%c", function(){});
   describe("%e", function(){});
   describe("%f", function(){});
-  describe("%x", function(){});
-  describe("%X", function(){});
+
   describe("%t", function(){});
 
 });

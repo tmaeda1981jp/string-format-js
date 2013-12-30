@@ -1,124 +1,141 @@
 /*jslint white: true, nomen: true, maxlen: 120, plusplus: true, */
 /*global _:false, $:false, define:false, require:false, */
 
-String.prototype.format = function() {
+(function(global, undefined) {
+
   'use strict';
 
-  var i,
-      result = this,
-      args = Array.prototype.slice.call(arguments),
+  var string = global.String;
 
-      Formatter = (function() {
-        var Constr = function(identifier) {
-          var array = function(len){ return new Array(len); };
+  if (!string.prototype.format) {
 
-          switch(true) {
-          case /^([ds])$/.test(identifier):
-            // TODO dならparamはnumber, sならparamはstringのチェック
-            this.formatter = function(line, param) {
-              return line.replace("%" + identifier, param);
-            };
-            break;
+    string.prototype.format = function() {
 
-          // Octet
-          case /^(o)$/.test(identifier):
-            this.formatter = function(line, param) {
-              return line.replace("%" + identifier, param.toString(8));
-            };
-            break;
+      var i,
+          result = this,
+          args = Array.prototype.slice.call(arguments),
 
-          // Binary
-          case /^(b)$/.test(identifier):
-            this.formatter = function(line, param) {
-              return line.replace("%" + identifier, param.toString(2));
-            };
-            break;
+          Formatter = (function() {
+            var Constr = function(identifier) {
+              var array = function(len){ return new Array(len); };
 
-          // Decimal
-          case /^([0\-]?)([1-9])d$/.test(identifier):
-            this.formatter = function(line, param) {
-              var len = RegExp.$2 - param.toString().length,
-                  replaceString = '',
-                  result;
-              if (len < 0) { len = 0; }
-              switch(RegExp.$1) {
-              case "": // rpad
-                replaceString = (array(len + 1).join(" ") + param).slice(-RegExp.$2);
+              switch(true) {
+              case /^([ds])$/.test(identifier):
+                // TODO dならparamはnumber, sならparamはstringのチェック
+                this.formatter = function(line, param) {
+                  return line.replace("%" + identifier, param);
+                };
                 break;
-              case "-": // lpad
-                replaceString = (param + array(len + 1).join(" ")).slice(-RegExp.$2);
+
+                // Octet
+              case /^(o)$/.test(identifier):
+                this.formatter = function(line, param) {
+                  return line.replace("%" + identifier, param.toString(8));
+                };
                 break;
-              case "0": // 0pad
-                replaceString = (array(len + 1).join("0") + param).slice(-RegExp.$2);
+
+                // Binary
+              case /^(b)$/.test(identifier):
+                this.formatter = function(line, param) {
+                  return line.replace("%" + identifier, param.toString(2));
+                };
+                break;
+
+              case /^(x)$/.test(identifier):
+                this.formatter = function(line, param) {
+                  return line.replace("%" + identifier, param.toString(16));
+                };
+                break;
+
+                // Decimal
+              case /^([0\-]?)([1-9])d$/.test(identifier):
+                  this.formatter = function(line, param) {
+                    var len = RegExp.$2 - param.toString().length,
+                        replaceString = '',
+                        result;
+                    if (len < 0) { len = 0; }
+                    switch(RegExp.$1) {
+                    case "": // rpad
+                      replaceString = (array(len + 1).join(" ") + param).slice(-RegExp.$2);
+                      break;
+                    case "-": // lpad
+                      replaceString = (param + array(len + 1).join(" ")).slice(-RegExp.$2);
+                      break;
+                    case "0": // 0pad
+                      replaceString = (array(len + 1).join("0") + param).slice(-RegExp.$2);
+                      break;
+                    default:
+                      // TODO throw ?
+                    }
+                    return line.replace("%" + identifier, replaceString);
+                  };
+                break;
+
+                // String
+              case /^(-?)(\d)s$/.test(identifier):
+                  this.formatter = function(line, param) {
+                    var len = RegExp.$2 - param.toString().length,
+                        replaceString = '',
+                        result;
+                    if (len < 0) { len = 0; }
+                    switch(RegExp.$1) {
+                    case "": // rpad
+                      replaceString = (array(len + 1).join(" ") + param).slice(-RegExp.$2);
+                      break;
+                    case "-": // lpad
+                      replaceString = (param + array(len + 1).join(" ")).slice(-RegExp.$2);
+                      break;
+                    default:
+                      // TODO throw ?
+                    }
+                    return line.replace("%" + identifier, replaceString);
+                  };
+                break;
+
+                // String with max length
+              case /^(-?\d?)\.(\d)s$/.test(identifier):
+                  this.formatter = function(line, param) {
+                    var replaceString = '',
+                        max, spacelen;
+
+                    // 桁数指定なし %.4s
+                    if (RegExp.$1 === '') {
+                      replaceString = param.slice(0, RegExp.$2);
+                    }
+                    // 桁数指定あり %5.4s %-5.4s
+                    else {
+                      param = param.slice(0, RegExp.$2);
+                      max = Math.abs(RegExp.$1);
+                      spacelen = max - param.toString().length;
+                      replaceString = RegExp.$1.indexOf('-') !== -1 ?
+                        (param + array(spacelen + 1).join(" ")).slice(-max): // lpad
+                        (array(spacelen + 1).join(" ") + param).slice(-max); // rpad
+                    }
+                    return line.replace("%" + identifier, replaceString);
+                  };
                 break;
               default:
-                // TODO throw ?
+                console.log("not match"); // TODO
               }
-              return line.replace("%" + identifier, replaceString);
             };
-            break;
 
-          // String
-          case /^(-?)(\d)s$/.test(identifier):
-            this.formatter = function(line, param) {
-              var len = RegExp.$2 - param.toString().length,
-                  replaceString = '',
-                  result;
-              if (len < 0) { len = 0; }
-              switch(RegExp.$1) {
-              case "": // rpad
-                replaceString = (array(len + 1).join(" ") + param).slice(-RegExp.$2);
-                break;
-              case "-": // lpad
-                replaceString = (param + array(len + 1).join(" ")).slice(-RegExp.$2);
-                break;
-              default:
-                // TODO throw ?
+            Constr.prototype = {
+              format: function(line, param) {
+                return this.formatter.call(this, line, param);
               }
-              return line.replace("%" + identifier, replaceString);
             };
-            break;
+            return Constr;
+          }());
 
-          // String with max length
-          case /^(-?\d?)\.(\d)s$/.test(identifier):
-            this.formatter = function(line, param) {
-              var replaceString = '',
-                  max, spacelen;
+      for (i=0; i <args.length; i+=1) {
+        if (result.match(/%([.#0-9\-]*[bcdosxX])/)) {
+          result = new Formatter(RegExp.$1).format(result, args[i]);
+        }
+      }
+      return result;
+    };
 
-              // 桁数指定なし %.4s
-              if (RegExp.$1 === '') {
-                replaceString = param.slice(0, RegExp.$2);
-              }
-              // 桁数指定あり %5.4s %-5.4s
-              else {
-                param = param.slice(0, RegExp.$2);
-                max = Math.abs(RegExp.$1);
-                spacelen = max - param.toString().length;
-                replaceString = RegExp.$1.indexOf('-') !== -1 ?
-                  (param + array(spacelen + 1).join(" ")).slice(-max): // lpad
-                  (array(spacelen + 1).join(" ") + param).slice(-max); // rpad
-              }
-              return line.replace("%" + identifier, replaceString);
-            };
-            break;
-          default:
-            console.log("not match"); // TODO
-          }
-        };
-
-        Constr.prototype = {
-          format: function(line, param) {
-            return this.formatter.call(this, line, param);
-          }
-        };
-        return Constr;
-      }());
-
-  for (i=0; i <args.length; i+=1) {
-    if (result.match(/%([.#0-9\-]*[bcdosxX])/)) {
-      result = new Formatter(RegExp.$1).format(result, args[i]);
-    }
   }
 
-  return result;
-};
+}(global !== 'undefined' ? global : window));
+
