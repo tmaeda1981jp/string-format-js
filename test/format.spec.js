@@ -76,14 +76,20 @@ describe("format.js", function() {
     });
   });
 
+  describe("%o", function() {
+    it("'123 => %o'.format(123) === '123 => 173'", function() {
+      expect('123 => %o'.format(123)).to.equal('123 => 173');
+    });
+  });
 
-
-  describe("%b", function(){});
+  describe("%b", function() {
+    it("'123 => %b'.format(123) === '123 => 1111011'", function() {
+      expect('123 => %b'.format(123)).to.equal('123 => 1111011');
+    });
+  });
   describe("%c", function(){});
   describe("%e", function(){});
-  describe("%u", function(){}); // iru ?
   describe("%f", function(){});
-  describe("%o", function(){});
   describe("%x", function(){});
   describe("%X", function(){});
   describe("%t", function(){});
