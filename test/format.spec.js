@@ -104,6 +104,9 @@ describe("format.js", function() {
     it("'%u'.format(0x12345678 ^ 0xFFFFFFFF) === '3989547399'", function() {
       expect('%u'.format(0x12345678 ^ 0xFFFFFFFF)).to.equal('3989547399');
     });
+    it("'%u'.format(-1) === '4294967295'", function() {
+      expect('%u'.format('-1')).to.equal('4294967295');
+    });
   });
 
   describe("%c", function(){

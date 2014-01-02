@@ -27,26 +27,21 @@
                 };
                 break;
 
-                // Octet
+              // Octet
               case /^(o)$/.test(identifier):
                 this.formatter = function(line, param) {
                   return line.replace("%" + identifier, param.toString(8));
                 };
                 break;
 
-                // Binary
+              // Binary
               case /^(b)$/.test(identifier):
                 this.formatter = function(line, param) {
                   return line.replace("%" + identifier, param.toString(2));
                 };
                 break;
 
-              case /^(u)$/.test(identifier):
-                this.formatter = function(line, param) {
-                  return line.replace("%" + identifier, param >>> 0);
-                };
-                break;
-
+              // Hex
               case /^([xX])$/.test(identifier):
                 this.formatter = function(line, param) {
                   var hex = param.toString(16);
@@ -55,7 +50,15 @@
                 };
                 break;
 
-                // Decimal
+
+              case /^(u)$/.test(identifier):
+                this.formatter = function(line, param) {
+                  return line.replace("%" + identifier, param >>> 0);
+                };
+                break;
+
+
+              // Decimal
               case /^([0\-]?)([1-9])d$/.test(identifier):
                   this.formatter = function(line, param) {
                     var len = RegExp.$2 - param.toString().length,
@@ -79,7 +82,7 @@
                   };
                 break;
 
-                // String
+              // String
               case /^(-?)(\d)s$/.test(identifier):
                   this.formatter = function(line, param) {
                     var len = RegExp.$2 - param.toString().length,
@@ -100,7 +103,7 @@
                   };
                 break;
 
-                // String with max length
+              // String with max length
               case /^(-?\d?)\.(\d)s$/.test(identifier):
                   this.formatter = function(line, param) {
                     var replaceString = '',
