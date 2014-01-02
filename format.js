@@ -41,6 +41,12 @@
                 };
                 break;
 
+              case /^(u)$/.test(identifier):
+                this.formatter = function(line, param) {
+                  return line.replace("%" + identifier, param >>> 0);
+                };
+                break;
+
               case /^(x)$/.test(identifier):
                 this.formatter = function(line, param) {
                   return line.replace("%" + identifier, param.toString(16));
@@ -128,7 +134,7 @@
           }());
 
       for (i=0; i <args.length; i+=1) {
-        if (result.match(/%([.#0-9\-]*[bcdosxX])/)) {
+        if (result.match(/%([.#0-9\-]*[bcdosuxX])/)) {
           result = new Formatter(RegExp.$1).format(result, args[i]);
         }
       }

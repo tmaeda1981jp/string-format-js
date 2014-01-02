@@ -94,7 +94,14 @@ describe("format.js", function() {
     });
   });
 
-  describe("%c", function(){});
+  describe("%u", function() {
+    it("'%u'.format(0x12345678 ^ 0xFFFFFFFF) === '3989547399'", function() {
+      expect('%u'.format(0x12345678 ^ 0xFFFFFFFF)).to.equal('3989547399');
+    });
+  });
+
+  describe("%c", function(){
+  });
   describe("%e", function(){});
   describe("%f", function(){});
 
