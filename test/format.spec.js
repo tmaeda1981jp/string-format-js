@@ -114,9 +114,29 @@ describe("format.js", function() {
       expect('%c'.format(97)).to.equal('a');
     });
   });
-  describe("%e", function(){});
-  describe("%f", function(){});
 
-  describe("%t", function(){});
+  describe("%e", function() {});
+  describe("%f", function() {
+    it("'%f'.format(1.0) === '1.000000'", function() {
+      expect('%f'.format(1.0)).to.equal('1.000000');
+    });
+    it("'%.2f'.format(1.0) === '1.00'", function() {
+      expect('%.2f'.format(1.0)).to.equal('1.00');
+    });
+    it("'[%10f]'.format(1.0) === '[1.00000000]'", function() {
+      expect('[%10f]'.format(1.0)).to.equal('[1.00000000]');
+    });
+    it("'[%10.2f]'.format(1.0) === '[      1.00]'", function() {
+      expect('[%10.2f]'.format(1.0)).to.equal('[      1.00]');
+    });
+    it("'[%10.2f]'.format(1.2345) === '[      1.23]'", function() {
+      expect('[%10.2f]'.format(1.2345)).to.equal('[      1.23]');
+    });
+    it("'[%-10.2f]'.format(1.0) === '[1.00      ]'", function() {
+      expect('[%-10.2f]'.format(1.0)).to.equal('[1.00      ]');
+    });
+  });
+
+  describe("%t", function() {});
 
 });

@@ -62,6 +62,37 @@
                 };
                 break;
 
+              case /^(-?)(\d*).?(\d?)(f)$/.test(identifier):
+                this.formatter = function(line, param) {
+                  var lpad = RegExp.$1 === '-',
+                      width   = RegExp.$2,
+                      decimal = RegExp.$3,
+                      DOT_LENGTH = '.'.length,
+                      integralPart = param > 0 ? Math.floor(param) : Math.ceil(param),
+                      val = parseFloat(param).toFixed(decimal !== '' ? decimal : 6),
+                      numberPartWidth, spaceWidth;
+
+                  // 桁数指定あり
+                  if (width !== '') {
+                    // 小数部の精度指定あり
+                    if (decimal !== '') {
+                      numberPartWidth =
+                        integralPart.toString().length + DOT_LENGTH + parseInt(decimal, 10);
+
+                      spaceWidth = width - numberPartWidth;
+                      val = lpad ?
+                        parseFloat(param).toFixed(decimal) + (array(spaceWidth + 1).join(" ")) :
+                        (array(spaceWidth + 1).join(" ")) + parseFloat(param).toFixed(decimal);
+                    }
+                    else {
+                      val = parseFloat(param).toFixed(
+                        width - (integralPart.toString().length + DOT_LENGTH));
+                    }
+                  }
+                  return line.replace("%" + identifier, val);
+                };
+                break;
+
               // Decimal
               case /^([0\-]?)([1-9])d$/.test(identifier):
                   this.formatter = function(line, param) {
@@ -143,7 +174,7 @@
           }());
 
       for (i=0; i <args.length; i+=1) {
-        if (result.match(/%([.#0-9\-]*[bcdosuxX])/)) {
+        if (result.match(/%([.#0-9\-]*[bcdfosuxX])/)) {
           result = new Formatter(RegExp.$1).format(result, args[i]);
         }
       }
