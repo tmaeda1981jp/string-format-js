@@ -62,6 +62,39 @@
                 };
                 break;
 
+              case /^(-?)(\d*).?(\d?)(e)$/.test(identifier):
+                this.formatter = function(line, param) {
+                  var lpad = RegExp.$1 === '-',
+                      width = RegExp.$2,
+                      decimal = RegExp.$3 !== '' ? RegExp.$3: undefined,
+                      val = param.toExponential(decimal),
+                      mantissa, exponent, padLength
+                  ;
+                  if (width !== '') {
+                    if (decimal !== undefined) {
+                      padLength = width - val.length;
+                      if (padLength >= 0){
+                        val = lpad ?
+                          val + array(padLength + 1).join(" "):
+                          array(padLength + 1).join(" ") + val;
+                      }
+                      else {
+                        // TODO throw ?
+                      }
+                    }
+                    else {
+                      mantissa = val.split('e')[0];
+                      exponent = 'e' + val.split('e')[1];
+                      padLength = width - (mantissa.length + exponent.length);
+                      val = padLength >= 0 ?
+                        mantissa + (array(padLength + 1)).join("0") + exponent :
+                        mantissa.slice(0, padLength) + exponent;
+                    }
+                  }
+                  return line.replace("%" + identifier, val);
+                };
+                break;
+
               case /^(-?)(\d*).?(\d?)(f)$/.test(identifier):
                 this.formatter = function(line, param) {
                   var lpad = RegExp.$1 === '-',
@@ -174,7 +207,7 @@
           }());
 
       for (i=0; i <args.length; i+=1) {
-        if (result.match(/%([.#0-9\-]*[bcdfosuxX])/)) {
+        if (result.match(/%([.#0-9\-]*[bcdefosuxX])/)) {
           result = new Formatter(RegExp.$1).format(result, args[i]);
         }
       }

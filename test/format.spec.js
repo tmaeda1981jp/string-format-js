@@ -115,7 +115,6 @@ describe("format.js", function() {
     });
   });
 
-  describe("%e", function() {});
   describe("%f", function() {
     it("'%f'.format(1.0) === '1.000000'", function() {
       expect('%f'.format(1.0)).to.equal('1.000000');
@@ -136,7 +135,33 @@ describe("format.js", function() {
       expect('[%-10.2f]'.format(1.0)).to.equal('[1.00      ]');
     });
   });
-
-  describe("%t", function() {});
-
+  describe("%e", function() {
+    it("'%e'.format(123) === '1.23e+2'", function() {
+      expect('%e'.format(123)).to.equal('1.23e+2');
+    });
+    it("'%e'.format(123.45) === '1.2345e+2'", function() {
+      expect('%e'.format(123.45)).to.equal('1.2345e+2');
+    });
+    it("'%.5e'.format(123.45) === '1.23450e+2'", function() {
+      expect('%.5e'.format(123.45)).to.equal('1.23450e+2');
+    });
+    it("'[%15e]'.format(123.45) === '[1.2345000000e+2]'", function() {
+      expect('[%15e]'.format(123.45)).to.equal('[1.2345000000e+2]');
+    });
+    it("'[%15e]'.format(12345678901.45) === '[1.234567890e+10]'", function() {
+      expect('[%15e]'.format(12345678901.45)).to.equal('[1.234567890e+10]');
+    });
+    it("'[%20e]'.format(12345678901.45) === '[1.23456789014500e+10]'", function() {
+      expect('[%20e]'.format(12345678901.45)).to.equal('[1.23456789014500e+10]');
+    });
+    it("'[%15.2e]'.format(123.45) === '[        1.23e+2]'", function() {
+      expect('[%15.2e]'.format(123.45)).to.equal('[        1.23e+2]');
+    });
+    it("'[%7.2e]'.format(123.45) === '[1.23e+2]'", function() {
+      expect('[%7.2e]'.format(123.45)).to.equal('[1.23e+2]');
+    });
+    it("'[%-15.2e]'.format(123.45) === '[1.23e+2        ]'", function() {
+      expect('[%-15.2e]'.format(123.45)).to.equal('[1.23e+2        ]');
+    });
+  });
 });
