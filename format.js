@@ -50,13 +50,17 @@
                 };
                 break;
 
+              case /^(c)$/.test(identifier):
+                this.formatter = function(line, param) {
+                  return line.replace("%" + identifier, String.fromCharCode(param));
+                };
+                break;
 
               case /^(u)$/.test(identifier):
                 this.formatter = function(line, param) {
                   return line.replace("%" + identifier, param >>> 0);
                 };
                 break;
-
 
               // Decimal
               case /^([0\-]?)([1-9])d$/.test(identifier):

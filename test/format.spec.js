@@ -110,6 +110,9 @@ describe("format.js", function() {
   });
 
   describe("%c", function(){
+    it("'%c'.format(97) === 'a'", function() {
+      expect('%c'.format(97)).to.equal('a');
+    });
   });
   describe("%e", function(){});
   describe("%f", function(){});
