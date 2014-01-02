@@ -94,6 +94,12 @@ describe("format.js", function() {
     });
   });
 
+  describe("%X", function() {
+    it("'123 => %X'.format(123) === '123 => 7B", function() {
+      expect('123 => %X'.format(123)).to.equal('123 => 7B');
+    });
+  });
+
   describe("%u", function() {
     it("'%u'.format(0x12345678 ^ 0xFFFFFFFF) === '3989547399'", function() {
       expect('%u'.format(0x12345678 ^ 0xFFFFFFFF)).to.equal('3989547399');

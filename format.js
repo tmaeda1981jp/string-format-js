@@ -47,9 +47,11 @@
                 };
                 break;
 
-              case /^(x)$/.test(identifier):
+              case /^([xX])$/.test(identifier):
                 this.formatter = function(line, param) {
-                  return line.replace("%" + identifier, param.toString(16));
+                  var hex = param.toString(16);
+                  if (identifier === 'X') { hex = hex.toUpperCase(); }
+                  return line.replace("%" + identifier, hex);
                 };
                 break;
 
