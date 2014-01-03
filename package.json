@@ -1,6 +1,6 @@
 {
-  "name": "format",
-  "version": "0.0.0",
+  "name": "format.js",
+  "version": "0.0.1",
   "description": "String format function for javascript",
   "main": "format.js",
   "scripts": {
@@ -15,6 +15,7 @@
     "grunt-contrib-watch": "~0.5.3",
     "expect.js": "~0.2.0",
     "mocha-phantomjs": "~3.3.1",
-    "grunt-exec": "~0.4.3"
+    "grunt-exec": "~0.4.3",
+    "grunt-contrib-uglify": "~0.2.7"
   }
 }

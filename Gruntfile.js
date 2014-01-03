@@ -8,10 +8,25 @@ module.exports = function(grunt) {
   // Add the grunt-mocha-test tasks.
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-exec');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.initConfig({
-    // Configure a mochaTest task
+    pkg: grunt.file.readJSON('package.json'),
+    uglify: {
+      my_target: {
+        options: {
+          mangle: true,
+          compress: true,
+          banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
+            '<%= grunt.template.today("yyyy-mm-dd") %> */'
+        },
+        files: {
+          'format.min.js': ['format.js']
+        }
+      }
+    },
+
     mochaTest: {
       test: {
         options: {
