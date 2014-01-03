@@ -7,6 +7,7 @@ module.exports = function(grunt) {
 
   // Add the grunt-mocha-test tasks.
   grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks('grunt-exec');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.initConfig({
@@ -20,10 +21,20 @@ module.exports = function(grunt) {
       }
     },
 
+    exec: {
+      browserTest: {
+        command: 'mocha-phantomjs test/specrunner.html'
+      }
+    },
+
     watch: {
       mochaTest: {
         files: ['format.js', 'test/format.spec.js'],
         tasks: ['mochaTest']
+      },
+      browserTest: {
+        files: ['format.js', 'test/format.spec.js'],
+        tasks: ['exec:browserTest']
       }
     }
   });

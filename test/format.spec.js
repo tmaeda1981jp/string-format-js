@@ -1,10 +1,13 @@
 /*jslint white: true, nomen: true, maxlen: 120, plusplus: true, */
 /*global _:false, $:false, define:false, require:false, describe:false,
- it:false, before:false, after:false, beforeEach:false, afterEach:false, 
+ it:false, before:false, after:false, beforeEach:false, afterEach:false,
  sinon:false, context:false, */
 
-require('../format.js');
-var expect = require('expect.js');
+
+if ('undefined' !== typeof module) {
+  require('../format.js');
+  var expect = require('expect.js');
+}
 
 describe("format.js", function() {
   'use strict';
