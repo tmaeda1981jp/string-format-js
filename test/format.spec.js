@@ -41,17 +41,36 @@ describe("format.js", function() {
       it("'%05d'.format('123') === '00123'", function() {
         expect('%05d'.format('123')).to.equal('00123');
       });
+      it("'%010d'.format('123') === '0000000123'", function() {
+        expect('%010d'.format('123')).to.equal('0000000123');
+      });
       it("'%03d, %05d'.format(1, 123) === '001, 00123'", function() {
         expect('%03d, %05d'.format(1, 123)).to.equal('001, 00123');
       });
       it("'[%5d]'.format(123) === '[  123]'", function() {
         expect('[%5d]'.format(123)).to.equal('[  123]');
       });
+      it("'[%5d]'.format('123') === '[  123]'", function() {
+        expect('[%5d]'.format('123')).to.equal('[  123]');
+      });
+      it("'[%10d]'.format(123) === '[       123]'", function() {
+        expect('[%10d]'.format(123)).to.equal('[       123]');
+      });
       it("'[%-5d]'.format(123) === '[123  ]'", function() {
         expect('[%-5d]'.format(123)).to.equal('[123  ]');
       });
       it("'[%-5d]'.format('123') === '[123  ]'", function() {
         expect('[%-5d]'.format('123')).to.equal('[123  ]');
+      });
+      it("'[%-10d]'.format(123) === '[123       ]'", function() {
+        expect('[%-10d]'.format(123)).to.equal('[123       ]');
+      });
+
+      it("'%vd'.format(123) === '%vd'(not match)", function() {
+        expect('%vd'.format(123)).to.equal('%vd');
+      });
+      it("'%-d'.format(123) === '%-d'(not match)", function() {
+        expect('%-d'.format(123)).to.equal('%-d');
       });
 
       it("'%d'.format('test') throws TypeError", function() {
