@@ -6,5 +6,6 @@
 
 - write this document
 - handle exceptions and errors
+- refactoring
 
 This software is released under the MIT License, see LICENSE.txt.
