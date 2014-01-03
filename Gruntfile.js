@@ -30,7 +30,7 @@ module.exports = function(grunt) {
     mochaTest: {
       test: {
         options: {
-//          grep: '%d',
+//          grep: '%b',
           reporter: 'spec'
         },
         src: ['test/format.spec.js']

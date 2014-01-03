@@ -129,23 +129,71 @@ describe("format.js", function() {
       it("'123 => %o'.format(123) === '123 => 173'", function() {
         expect('123 => %o'.format(123)).to.equal('123 => 173');
       });
+      it("'123 => %o'.format('123') === '123 => 173'", function() {
+        expect('123 => %o'.format('123')).to.equal('123 => 173');
+      });
+      it("'0x7b => %o'.format(0x7b) === '0x7b => 173'", function() {
+        expect('0x7b => %o'.format(0x7b)).to.equal('0x7b => 173');
+      });
+      it("'0x7b => %o'.format('0x7b') === '0x7b => 173'", function() {
+        expect('0x7b => %o'.format('0x7b')).to.equal('0x7b => 173');
+      });
+
+      it("'%o'.format('test') throws TypeError", function() {
+        expect( function() { "%o".format('test'); }).to.throwException(function(e) {
+          expect(e).to.be.a(TypeError);
+        });
+      });
+
     });
 
     describe("%b", function() {
       it("'123 => %b'.format(123) === '123 => 1111011'", function() {
         expect('123 => %b'.format(123)).to.equal('123 => 1111011');
       });
+      it("'123 => %b'.format('123') === '123 => 1111011'", function() {
+        expect('123 => %b'.format('123')).to.equal('123 => 1111011');
+      });
+      it("'0x7b => %b'.format(0x7b) === '0x7b => 1111011'", function() {
+        expect('0x7b => %b'.format(0x7b)).to.equal('0x7b => 1111011');
+      });
+      it("'0x7b => %b'.format('0x7b') === '0x7b => 1111011'", function() {
+        expect('0x7b => %b'.format('0x7b')).to.equal('0x7b => 1111011');
+      });
+
+      it("'%b'.format('test') throws TypeError", function() {
+        expect( function() { "%b".format('test'); }).to.throwException(function(e) {
+          expect(e).to.be.a(TypeError);
+        });
+      });
+
     });
 
     describe("%x", function() {
       it("'123 => %x'.format(123) === '123 => 7b", function() {
         expect('123 => %x'.format(123)).to.equal('123 => 7b');
       });
+      it("'123 => %x'.format('123') === '123 => 7b", function() {
+        expect('123 => %x'.format('123')).to.equal('123 => 7b');
+      });
+      it("'%x'.format('test') throws TypeError", function() {
+        expect( function() { "%x".format('test'); }).to.throwException(function(e) {
+          expect(e).to.be.a(TypeError);
+        });
+      });
     });
 
     describe("%X", function() {
       it("'123 => %X'.format(123) === '123 => 7B", function() {
         expect('123 => %X'.format(123)).to.equal('123 => 7B');
+      });
+      it("'123 => %X'.format('123') === '123 => 7B", function() {
+        expect('123 => %X'.format('123')).to.equal('123 => 7B');
+      });
+      it("'%X'.format('test') throws TypeError", function() {
+        expect( function() { "%X".format('test'); }).to.throwException(function(e) {
+          expect(e).to.be.a(TypeError);
+        });
       });
     });
 

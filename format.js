@@ -40,21 +40,28 @@
               // Octet
               case /^(o)$/.test(identifier):
                 this.formatter = function(line, param) {
-                  return line.replace("%" + identifier, param.toString(8));
+                  if (!isNumber(param)) { throw new TypeError(); }
+                  return line.replace(
+                    "%" + identifier,
+                    parseInt(param).toString(8));
                 };
                 break;
 
               // Binary
               case /^(b)$/.test(identifier):
                 this.formatter = function(line, param) {
-                  return line.replace("%" + identifier, param.toString(2));
+                  if (!isNumber(param)) { throw new TypeError(); }
+                  return line.replace(
+                    "%" + identifier,
+                    parseInt(param).toString(2));
                 };
                 break;
 
               // Hex
               case /^([xX])$/.test(identifier):
                 this.formatter = function(line, param) {
-                  var hex = param.toString(16);
+                  if (!isNumber(param)) { throw new TypeError(); }
+                  var hex = parseInt(param).toString(16);
                   if (identifier === 'X') { hex = hex.toUpperCase(); }
                   return line.replace("%" + identifier, hex);
                 };
@@ -144,7 +151,6 @@
                       replaceString = '',
                       result;
                   if (len < 0) { len = 0; }
-
                   switch(RegExp.$1) {
                   case "": // rpad
                     replaceString = (array(len + 1).join(" ") + param).slice(-RegExp.$2);
