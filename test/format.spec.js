@@ -23,32 +23,56 @@ describe("format.js", function() {
     });
 
     describe("%d", function() {
-      it("'This is %d'.format(10) === 'This is 10'", function() {
-        expect("This is %d".format(10)).to.equal('This is 10');
+      it("'%d'.format(10) === '10'", function() {
+        expect("%d".format(10)).to.equal('10');
       });
-
-      it("'This is %d and %d'.format(5, 10) === 'This is 5 and 10'", function() {
-        expect("This is %d and %d".format(5, 10)).to.equal('This is 5 and 10');
+      it("'%d'.format('10') === '10'", function() {
+        expect("%d".format('10')).to.equal('10');
       });
-
-      it("'This is %d, %d and %d'.format(5, 10, 15) === 'This is 5, 10 and 15'", function() {
-        expect("This is %d, %d and %d".format(5, 10, 15)).to.equal('This is 5, 10 and 15');
+      it("'%d, %d'.format(5, 10) === '5, 10'", function() {
+        expect("%d, %d".format(5, 10)).to.equal('5, 10');
       });
-
-      it("'This is %05d'.format(123) === 'This is 00123'", function() {
-        expect('This is %05d'.format(123)).to.equal('This is 00123');
+      it("'%d, %d and %d'.format(5, 10, 15) === '5, 10 and 15'", function() {
+        expect("%d, %d and %d".format(5, 10, 15)).to.equal('5, 10 and 15');
       });
-
-      it("'This is %03d and %05d'.format(1, 123) === 'This is 001 and 00123'", function() {
-        expect('This is %03d and %05d'.format(1, 123)).to.equal('This is 001 and 00123');
+      it("'%05d'.format(123) === '00123'", function() {
+        expect('%05d'.format(123)).to.equal('00123');
       });
-
+      it("'%05d'.format('123') === '00123'", function() {
+        expect('%05d'.format('123')).to.equal('00123');
+      });
+      it("'%03d, %05d'.format(1, 123) === '001, 00123'", function() {
+        expect('%03d, %05d'.format(1, 123)).to.equal('001, 00123');
+      });
       it("'[%5d]'.format(123) === '[  123]'", function() {
         expect('[%5d]'.format(123)).to.equal('[  123]');
       });
-
       it("'[%-5d]'.format(123) === '[123  ]'", function() {
         expect('[%-5d]'.format(123)).to.equal('[123  ]');
+      });
+      it("'[%-5d]'.format('123') === '[123  ]'", function() {
+        expect('[%-5d]'.format('123')).to.equal('[123  ]');
+      });
+
+      it("'%d'.format('test') throws TypeError", function() {
+        expect( function() { "%d".format('test'); }).to.throwException(function(e) {
+          expect(e).to.be.a(TypeError);
+        });
+      });
+      it("'%05d'.format('test') throws TypeError", function() {
+        expect( function() { '%05d'.format('test'); }).to.throwException(function(e) {
+          expect(e).to.be.a(TypeError);
+        });
+      });
+      it("'[%5d]'.format('test') throws TypeError", function() {
+        expect( function() { '[%5d]'.format('test'); }).to.throwException(function(e) {
+          expect(e).to.be.a(TypeError);
+        });
+      });
+      it("'[%-5d]'.format('test') throws TypeError", function() {
+        expect( function() { '[%-5d]'.format('test'); }).to.throwException(function(e) {
+          expect(e).to.be.a(TypeError);
+        });
       });
     });
 
@@ -68,7 +92,6 @@ describe("format.js", function() {
       it("'[%-5s]'.format('abc') === '[abc  ]'", function() {
         expect('[%-5s]'.format('abc')).to.equal('[abc  ]');
       });
-
       it("'[%.4s]'.format('abcde') === '[abcd]'", function() {
         expect('[%.4s]'.format('abcde')).to.equal('[abcd]');
       });

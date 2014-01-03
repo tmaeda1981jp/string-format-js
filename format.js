@@ -14,6 +14,10 @@
       var i,
           result = this,
 
+          isNumber = function(n) {
+            return !isNaN(parseFloat(n)) && isFinite(n);
+          },
+
           Formatter = (function() {
             var Constr = function(identifier) {
               var array = function(len){ return new Array(len); };
@@ -25,8 +29,10 @@
                 };
                 break;
               case /^([ds])$/.test(identifier):
-                // TODO dならparamはnumber, sならparamはstringのチェック
                 this.formatter = function(line, param) {
+                  if (RegExp.$1 === 'd' && !isNumber(param)) {
+                    throw new TypeError();
+                  }
                   return line.replace("%" + identifier, param);
                 };
                 break;
@@ -74,6 +80,7 @@
                       val = param.toExponential(decimal),
                       mantissa, exponent, padLength
                   ;
+
                   if (width !== '') {
                     if (decimal !== undefined) {
                       padLength = width - val.length;
@@ -131,10 +138,13 @@
               // Decimal
               case /^([0\-]?)([1-9])d$/.test(identifier):
                   this.formatter = function(line, param) {
+                    if (!isNumber(param)) { throw new TypeError(); }
+
                     var len = RegExp.$2 - param.toString().length,
                         replaceString = '',
                         result;
                     if (len < 0) { len = 0; }
+
                     switch(RegExp.$1) {
                     case "": // rpad
                       replaceString = (array(len + 1).join(" ") + param).slice(-RegExp.$2);
