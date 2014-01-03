@@ -13,13 +13,17 @@
 
       var i,
           result = this,
-          args = Array.prototype.slice.call(arguments),
 
           Formatter = (function() {
             var Constr = function(identifier) {
               var array = function(len){ return new Array(len); };
 
               switch(true) {
+              case /^#\{(\w+)\}*$/.test(identifier):
+                this.formatter = function(line, param) {
+                  return line.replace('#{' + RegExp.$1 + '}', param[RegExp.$1]);
+                };
+                break;
               case /^([ds])$/.test(identifier):
                 // TODO dならparamはnumber, sならparamはstringのチェック
                 this.formatter = function(line, param) {
@@ -204,17 +208,27 @@
               }
             };
             return Constr;
-          }());
+          }()),
 
-      for (i=0; i <args.length; i+=1) {
-        if (result.match(/%([.#0-9\-]*[bcdefosuxX])/)) {
-          result = new Formatter(RegExp.$1).format(result, args[i]);
+          args = Array.prototype.slice.call(arguments)
+      ;
+
+      if (args.length === 1 && typeof args[0] === 'object') {
+        for (i=0; i < Object.keys(args[0]).length; i+=1) {
+          if (result.match(/(#\{\w+\})/)) {
+            result = new Formatter(RegExp.$1).format(result, args[0]);
+          }
+        }
+      }
+      else {
+        for (i=0; i <args.length; i+=1) {
+          if (result.match(/%([.#0-9\-]*[bcdefosuxX])/)) {
+            result = new Formatter(RegExp.$1).format(result, args[i]);
+          }
         }
       }
       return result;
     };
-
   }
-
 }(global !== 'undefined' ? global : window));
 
