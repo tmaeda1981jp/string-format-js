@@ -109,9 +109,7 @@
                       val = parseFloat(param).toFixed(decimal !== '' ? decimal : 6),
                       numberPartWidth, spaceWidth;
 
-                  // 桁数指定あり
                   if (width !== '') {
-                    // 小数部の精度指定あり
                     if (decimal !== '') {
                       numberPartWidth =
                         integralPart.toString().length + DOT_LENGTH + parseInt(decimal, 10);
@@ -181,11 +179,11 @@
                     var replaceString = '',
                         max, spacelen;
 
-                    // 桁数指定なし %.4s
+                    // %.4s
                     if (RegExp.$1 === '') {
                       replaceString = param.slice(0, RegExp.$2);
                     }
-                    // 桁数指定あり %5.4s %-5.4s
+                    // %5.4s %-5.4s
                     else {
                       param = param.slice(0, RegExp.$2);
                       max = Math.abs(RegExp.$1);
