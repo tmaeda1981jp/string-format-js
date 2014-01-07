@@ -69,18 +69,21 @@
 
               case /^(c)$/.test(identifier):
                 this.formatter = function(line, param) {
+                  if (!isNumber(param)) { throw new TypeError(); }
                   return line.replace("%" + identifier, String.fromCharCode(param));
                 };
                 break;
 
               case /^(u)$/.test(identifier):
                 this.formatter = function(line, param) {
-                  return line.replace("%" + identifier, param >>> 0);
+                  if (!isNumber(param)) { throw new TypeError(); }
+                  return line.replace("%" + identifier, parseInt(param, 10) >>> 0);
                 };
                 break;
 
               case /^(-?)(\d*).?(\d?)(e)$/.test(identifier):
                 this.formatter = function(line, param) {
+                  if (!isNumber(param)) { throw new TypeError(); }
                   var lpad = RegExp.$1 === '-',
                       width = RegExp.$2,
                       decimal = RegExp.$3 !== '' ? RegExp.$3: undefined,
@@ -115,6 +118,7 @@
 
               case /^(-?)(\d*).?(\d?)(f)$/.test(identifier):
                 this.formatter = function(line, param) {
+                  if (!isNumber(param)) { throw new TypeError(); }
                   var lpad = RegExp.$1 === '-',
                       width   = RegExp.$2,
                       decimal = RegExp.$3,
@@ -127,7 +131,6 @@
                     if (decimal !== '') {
                       numberPartWidth =
                         integralPart.toString().length + DOT_LENGTH + parseInt(decimal, 10);
-
                       spaceWidth = width - numberPartWidth;
                       val = lpad ?
                         parseFloat(param).toFixed(decimal) + (array(spaceWidth + 1).join(" ")) :

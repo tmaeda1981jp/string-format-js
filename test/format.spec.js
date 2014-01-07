@@ -202,13 +202,35 @@ describe("format.js", function() {
         expect('%u'.format(0x12345678 ^ 0xFFFFFFFF)).to.equal('3989547399');
       });
       it("'%u'.format(-1) === '4294967295'", function() {
+        expect('%u'.format(-1)).to.equal('4294967295');
+      });
+      it("'%u'.format('-1') === '4294967295'", function() {
         expect('%u'.format('-1')).to.equal('4294967295');
+      });
+      it("'%u'.format('test') throws TypeError", function() {
+        expect( function() { "%u".format('test'); }).to.throwException(function(e) {
+          expect(e).to.be.a(TypeError);
+        });
       });
     });
 
     describe("%c", function(){
       it("'%c'.format(97) === 'a'", function() {
         expect('%c'.format(97)).to.equal('a');
+      });
+      it("'%c'.format('97') === 'a'", function() {
+        expect('%c'.format('97')).to.equal('a');
+      });
+      it("'%c'.format(0x61) === 'a'", function() {
+        expect('%c'.format(0x61)).to.equal('a');
+      });
+      it("'%c'.format('0x61') === 'a'", function() {
+        expect('%c'.format('0x61')).to.equal('a');
+      });
+      it("'%c'.format('test') throws TypeError", function() {
+        expect( function() { "%c".format('test'); }).to.throwException(function(e) {
+          expect(e).to.be.a(TypeError);
+        });
       });
     });
 
@@ -230,6 +252,11 @@ describe("format.js", function() {
       });
       it("'[%-10.2f]'.format(1.0) === '[1.00      ]'", function() {
         expect('[%-10.2f]'.format(1.0)).to.equal('[1.00      ]');
+      });
+      it("'%f'.format('test') throws TypeError", function() {
+        expect( function() { "%f".format('test'); }).to.throwException(function(e) {
+          expect(e).to.be.a(TypeError);
+        });
       });
     });
     describe("%e", function() {
@@ -259,6 +286,11 @@ describe("format.js", function() {
       });
       it("'[%-15.2e]'.format(123.45) === '[1.23e+2        ]'", function() {
         expect('[%-15.2e]'.format(123.45)).to.equal('[1.23e+2        ]');
+      });
+      it("'%e'.format('test') throws TypeError", function() {
+        expect( function() { "%e".format('test'); }).to.throwException(function(e) {
+          expect(e).to.be.a(TypeError);
+        });
       });
     });
 
