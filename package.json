@@ -1,5 +1,5 @@
 {
-  "name": "format.js",
+  "name": "formatjs",
   "version": "0.0.1",
   "description": "String format function for javascript",
   "main": "format.js",
