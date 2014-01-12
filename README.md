@@ -1,6 +1,7 @@
 # formatjs
 
-[![Build Status](https://travis-ci.org/tmaeda1981jp/format.js.png?branch=master)](https://travis-ci.org/tmaeda1981jp/formatjs)
+[![Build Status](https://travis-ci.org/tmaeda1981jp/formatjs.png?branch=master)](https://travis-ci.org/tmaeda1981jp/formatjs)
+
 
 ## Synopsis
 
