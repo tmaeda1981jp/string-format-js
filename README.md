@@ -1,4 +1,4 @@
-# format.js
+# formatjs
 
 [![Build Status](https://travis-ci.org/tmaeda1981jp/format.js.png?branch=master)](https://travis-ci.org/tmaeda1981jp/format.js)
 
@@ -49,13 +49,13 @@
 ### `%x`
 
 ```javascript
-'123 => %x'.format(123) === '123 => 7b
+'123 => %x'.format(123) === '123 => 7b'
 ```
 
 ### `%X`
 
 ```javascript
-'123 => %X'.format(123) === '123 => 7B
+'123 => %X'.format(123) === '123 => 7B'
 ```
 
 ### `%u`
