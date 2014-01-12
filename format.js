@@ -247,5 +247,4 @@
       return result;
     };
   }
-}(global !== 'undefined' ? global : window));
-
+}('undefined' !== typeof global ? global : window));
