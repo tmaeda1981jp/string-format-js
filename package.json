@@ -3,10 +3,12 @@
   "version": "0.0.1",
   "description": "String format function for javascript",
   "main": "format.js",
+  "keywords": ["string", "format"],
   "scripts": {
     "test": "grunt mochaTest"
   },
   "author": "tmaeda1981jp",
+  "homepage": "https://github.com/tmaeda1981jp/format.js",
   "license": "MIT",
   "devDependencies": {
     "mocha": "~1.16.2",
