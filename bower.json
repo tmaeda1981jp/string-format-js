@@ -1,0 +1,23 @@
+{
+  "name": "formatjs",
+  "main": "format.js",
+  "version": "0.1.0",
+  "homepage": "https://github.com/tmaeda1981jp/format.js",
+  "authors": [
+    "tmaeda1981jp <tmaeda1981jp@gmail.com>"
+  ],
+  "description": "String format function for javascript",
+  "keywords": [
+    "string",
+    "format"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "libs",
+    "test",
+    "tests"
+  ]
+}
