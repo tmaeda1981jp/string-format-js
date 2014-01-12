@@ -2,6 +2,10 @@
 
 [![Build Status](https://travis-ci.org/tmaeda1981jp/format.js.png?branch=master)](https://travis-ci.org/tmaeda1981jp/format.js)
 
+## Synopsis
+
+String format function for javascript.
+
 ## Code Example
 
 ### `%d`
