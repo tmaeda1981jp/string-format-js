@@ -8,7 +8,7 @@
     "test": "grunt mochaTest"
   },
   "author": "tmaeda1981jp",
-  "homepage": "https://github.com/tmaeda1981jp/format.js",
+  "homepage": "https://github.com/tmaeda1981jp/formatjs",
   "license": "MIT",
   "devDependencies": {
     "mocha": "~1.16.2",
