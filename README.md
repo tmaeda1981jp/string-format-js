@@ -1,4 +1,4 @@
-# formatjs
+# string-format-js
 
 [![Build Status](https://travis-ci.org/tmaeda1981jp/string-format-js.png?branch=master)](https://travis-ci.org/tmaeda1981jp/string-format-js)
 
