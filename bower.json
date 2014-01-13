@@ -1,8 +1,8 @@
 {
-  "name": "formatjs",
+  "name": "string-format-js",
   "main": "format.js",
   "version": "0.1.0",
-  "homepage": "https://github.com/tmaeda1981jp/formatjs",
+  "homepage": "https://github.com/tmaeda1981jp/string-format-js",
   "authors": [
     "tmaeda1981jp <tmaeda1981jp@gmail.com>"
   ],
