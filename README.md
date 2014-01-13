@@ -112,13 +112,13 @@ String format function for javascript.
 ### node(TODO register)
 
 ```bash
-npm install formatjs
+npm install string-format-js
 ```
 
 ### bower(TODO register)
 
 ```bash
-bower install formatjs
+bower install string-format-js
 ```
 
 ## Tests
