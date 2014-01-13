@@ -109,13 +109,13 @@ String format function for javascript.
 
 ## Installation
 
-### node(TODO register)
+### node
 
 ```bash
 npm install string-format-js
 ```
 
-### bower(TODO register)
+### bower
 
 ```bash
 bower install string-format-js
