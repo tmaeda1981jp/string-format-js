@@ -123,6 +123,18 @@ describe("format.js", function() {
       it("'[%-5.4s]'.format('あいうえお') === '[あいうえ ]'", function() {
         expect('[%-5.4s]'.format('あいうえお')).to.equal('[あいうえ ]');
       });
+      it("'%s'.format(true) === 'true'", function() {
+        expect('%s'.format(true)).to.equal('true');
+      });
+      it("'%s'.format('true') === 'true'", function() {
+        expect('%s'.format('true')).to.equal('true');
+      });
+      it("'%s'.format(false) === 'false'", function() {
+        expect('%s'.format(false)).to.equal('false');
+      });
+      it("'%s'.format('false') === 'false'", function() {
+        expect('%s'.format('false')).to.equal('false');
+      });
     });
 
     describe("%o", function() {
