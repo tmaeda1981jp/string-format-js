@@ -9,7 +9,7 @@ String format function for javascript.
 
 ## Code Example
 
-### `%d`
+### %d
 
 ```javascript
 '%d'.format(10) === '10'
@@ -23,11 +23,10 @@ String format function for javascript.
 '[%-10d]'.format(123) === '[123      ]'
 ```
 
-### `%s`
+### %s
 
 ```javascript
-'This is %s'.format('a pen') === 'This is a pen'
-'This is %s %s'.format('a', 'pen') === 'This is a pen'
+'This is a %s'.format('pen') === 'This is a pen'
 'This %s %s %s'.format('is', 'a', 'pen') === 'This is a pen'
 '[%5s]'.format('abc') === '[ abc]'
 '[%-5s]'.format('abc') === '[abc ]'
@@ -37,47 +36,47 @@ String format function for javascript.
 '[%-5.4s]'.format('あいうえお') === '[あいうえ ]'
 ```
 
-### `%o`
+### %o
 
 ```javascript
 '123 => %o'.format(123) === '123 => 173'
 '0x7b => %o'.format(0x7b) === '0x7b => 173'
 ```
 
-### `%b`
+### %b
 
 ```javascript
 '123 => %b'.format(123) === '123 => 1111011'
 '0x7b => %b'.format(0x7b) === '0x7b => 1111011'
 ```
 
-### `%x`
+### %x
 
 ```javascript
 '123 => %x'.format(123) === '123 => 7b'
 ```
 
-### `%X`
+### %X
 
 ```javascript
 '123 => %X'.format(123) === '123 => 7B'
 ```
 
-### `%u`
+### %u
 
 ```javascript
 '%u'.format(0x12345678 ^ 0xFFFFFFFF) === '3989547399'
 '%u'.format(-1) === '4294967295'
 ```
 
-### `%c`
+### %c
 
 ```javascript
 '%c'.format(97) === 'a'
 '%c'.format(0x61) === 'a'
 ```
 
-### `%f`
+### %f
 
 ```javascript
 '%f'.format(1.0) === '1.000000'
@@ -87,7 +86,7 @@ String format function for javascript.
 '[%10.2f]'.format(1.2345) === '[      1.23]'
 '[%-10.2f]'.format(1.0) === '[1.00      ]'
 ```
-### `%e`
+### %e
 
 ```javascript
 '%e'.format(123) === '1.23e+2'
@@ -104,7 +103,7 @@ String format function for javascript.
 ```javascript
 '#{name}'.format({name:'Takashi Maeda'}) === 'Takashi Maeda'
 '#{first} #{last}'.format({first:'Takashi', last:'Maeda'}) === 'Takashi Maeda'
-'#{a} #{b} #{c} #{d}}'.format(a:'This', b:'is', c:'a', d:'pen'}) === 'This is a pen'
+'#{a} #{b}, #{c} #{d}'.format(a:'Easy', b:'come', c:'easy', d:'go'}) === 'Easy come, easy go'
 ```
 
 ## Installation

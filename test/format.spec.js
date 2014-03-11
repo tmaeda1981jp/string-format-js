@@ -96,8 +96,8 @@ describe("format.js", function() {
     });
 
     describe("%s", function(){
-      it("'This is %s'.format('a pen') === 'This is a pen'", function() {
-        expect('This is %s'.format('a pen')).to.equal('This is a pen');
+      it("'This is a %s'.format('pen') === 'This is a pen'", function() {
+        expect('This is a %s'.format('pen')).to.equal('This is a pen');
       });
       it("'This is %s %s'.format('a', 'pen') === 'This is a pen'", function() {
         expect('This is %s %s'.format('a', 'pen')).to.equal('This is a pen');
@@ -306,13 +306,13 @@ describe("format.js", function() {
           last:  'Maeda'
         })).to.equal('Takashi Maeda');
       });
-      it("'#{a} #{b} #{c} #{d}}'.format(a:'This', b:'is', c:'a', d:'pen'}) === 'This is a pen'", function() {
-        expect('#{a} #{b} #{c} #{d}'.format({
-          a: 'This',
-          b: 'is',
-          c: 'a',
-          d: 'pen'
-        })).to.equal('This is a pen');
+      it("'#{a} #{b}, #{c} #{d}'.format({a:'Easy', b:'come', c:'easy', d:'go'}) === 'Easy come, easy go'", function() {
+        expect('#{a} #{b}, #{c} #{d}'.format({
+          a: 'Easy',
+          b: 'come',
+          c: 'easy',
+          d: 'go'
+        })).to.equal('Easy come, easy go');
       });
     });
   });
