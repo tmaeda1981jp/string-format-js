@@ -1,6 +1,6 @@
 {
   "name": "string-format-js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "String format function for javascript",
   "main": "format.js",
   "keywords": ["string", "format"],
