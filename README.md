@@ -111,13 +111,13 @@ String format function for javascript.
 ### node
 
 ```bash
-npm install string-format-js
+$ npm install string-format-js
 ```
 
 ### bower
 
 ```bash
-bower install string-format-js
+$ bower install string-format-js
 ```
 
 ## Tests
@@ -125,13 +125,13 @@ bower install string-format-js
 ### node
 
 ```bash
-grunt exec:mochaTest
+$ grunt mochaTest
 ```
 
 ### browser
 
 ```bash
-grunt exec:browserTest
+$ grunt browserTest
 ```
 
 ## License
