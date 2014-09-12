@@ -1,7 +1,7 @@
 {
   "name": "string-format-js",
   "main": "format.js",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/tmaeda1981jp/string-format-js",
   "authors": [
     "tmaeda1981jp <tmaeda1981jp@gmail.com>"

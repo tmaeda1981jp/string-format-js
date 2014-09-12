@@ -1,6 +1,6 @@
 {
   "name": "string-format-js",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "String format function for javascript",
   "main": "format.js",
   "keywords": [
@@ -8,7 +8,8 @@
     "format"
   ],
   "scripts": {
-    "test": "grunt mochaTest"
+    "test": "grunt mochaTest",
+    "browserTest": "grunt browserTest"
   },
   "author": "tmaeda1981jp",
   "homepage": "https://github.com/tmaeda1981jp/string-format-js",
