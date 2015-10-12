@@ -170,7 +170,7 @@
                 break;
 
               // String
-              case /^(-?)(\d)s$/.test(identifier):
+              case /^(-?)(\d+)s$/.test(identifier):
                 this.formatter = function(line, param) {
                   var len = RegExp.$2 - param.toString().length,
                       replaceString = '',
