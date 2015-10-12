@@ -191,7 +191,7 @@
                 break;
 
               // String with max length
-              case /^(-?\d?)\.(\d)s$/.test(identifier):
+              case /^(-?\d*)\.(\d+)s$/.test(identifier):
                 this.formatter = function(line, param) {
                   var replaceString = '',
                       max, spacelen;

@@ -108,17 +108,32 @@ describe("format.js", function() {
       it("'[%5s]'.format('abc') === '[  abc]'", function() {
         expect('[%5s]'.format('abc')).to.equal('[  abc]');
       });
+      it("'[%12s]'.format('abc') === '[         abc]'", function() {
+        expect('[%12s]'.format('abc')).to.equal('[         abc]');
+      });
       it("'[%-5s]'.format('abc') === '[abc  ]'", function() {
         expect('[%-5s]'.format('abc')).to.equal('[abc  ]');
+      });
+      it("'[%-12s]'.format('abc') === '[abc         ]'", function() {
+        expect('[%-12s]'.format('abc')).to.equal('[abc         ]');
       });
       it("'[%.4s]'.format('abcde') === '[abcd]'", function() {
         expect('[%.4s]'.format('abcde')).to.equal('[abcd]');
       });
+      it("'[%.12s]'.format('abcdefghijklmn') === '[abcdefghijkl]'", function() {
+        expect('[%.12s]'.format('abcdefghijkl')).to.equal('[abcdefghijkl]');
+      });
       it("'[%5.4s]'.format('abcde') === '[ abcd]'", function() {
         expect('[%5.4s]'.format('abcde')).to.equal('[ abcd]');
       });
+      it("'[%12.10s]'.format('abcdefghijklmnopq') === '[  abcdefghij]'", function() {
+        expect('[%12.10s]'.format('abcdefghijklmnopq')).to.equal('[  abcdefghij]');
+      });
       it("'[%-5.4s]'.format('abcde') === '[abcd ]'", function() {
         expect('[%-5.4s]'.format('abcde')).to.equal('[abcd ]');
+      });
+      it("'[%-12.10s]'.format('abcdefghijklmnopq') === '[  abcdefghij]'", function() {
+        expect('[%-12.10s]'.format('abcdefghijklmnopq')).to.equal('[abcdefghij  ]');
       });
       it("'[%-5.4s]'.format('あいうえお') === '[あいうえ ]'", function() {
         expect('[%-5.4s]'.format('あいうえお')).to.equal('[あいうえ ]');
