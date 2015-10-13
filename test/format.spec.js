@@ -150,6 +150,45 @@ describe("format.js", function() {
       it("'%s'.format('false') === 'false'", function() {
         expect('%s'.format('false')).to.equal('false');
       });
+      it("'%s'.format('$$') === '$$'", function() {
+        expect('%s'.format('$$')).to.equal('$$');
+      });
+      it("'%s'.format('$$$$') === '$$$$'", function() {
+        expect('%s'.format('$$$$')).to.equal('$$$$');
+      });
+      it("'%s'.format('$&') === '$&'", function() {
+        expect('%s'.format('$&')).to.equal('$&');
+      });
+      it("'%s'.format('$`') === '$`'", function() {
+        expect('%s'.format('$`')).to.equal('$`');
+      });
+      it("'%s'.format('$\'') === '$\''", function() {
+        expect('%s'.format('$\'')).to.equal('$\'');
+      });
+      it("'[%5s]'.format('$$') === '[   $$]'", function() {
+        expect('[%5s]'.format('$$')).to.equal('[   $$]');
+      });
+      it("'[%-5s]'.format('$$') === '[$$   ]'", function() {
+        expect('[%-5s]'.format('$$')).to.equal('[$$   ]');
+      });
+      it("'[%.5s]'.format('abc$$fg') === '[abc$$]'", function() {
+        expect('[%.5s]'.format('abc$$fg')).to.equal('[abc$$]');
+      });
+      it("'[%.4s]'.format('abc$$fg') === '[abc$]'", function() {
+        expect('[%.4s]'.format('abc$')).to.equal('[abc$]');
+      });
+      it("'[%5.5s]'.format('abc$$fg') === '[abc$$]'", function() {
+        expect('[%5.5s]'.format('abc$$fg')).to.equal('[abc$$]');
+      });
+      it("'[%5.4s]'.format('abc$$fg') === '[ abc$]'", function() {
+        expect('[%5.4s]'.format('abc$$fg')).to.equal('[ abc$]');
+      });
+      it("'[%-5.5s]'.format('abc$$fg') === '[abc$$]'", function() {
+        expect('[%-5.5s]'.format('abc$$fg')).to.equal('[abc$$]');
+      });
+      it("'[%-5.4s]'.format('abc$$fg') === '[abc$ ]'", function() {
+        expect('[%-5.4s]'.format('abc$$fg')).to.equal('[abc$ ]');
+      });
     });
 
     describe("%o", function() {

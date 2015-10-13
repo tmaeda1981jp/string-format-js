@@ -33,7 +33,7 @@
                   if (RegExp.$1 === 'd' && !isNumber(param)) {
                     throw new TypeError();
                   }
-                  return line.replace("%" + identifier, param);
+                  return line.replace("%" + identifier, function() { return param; });
                 };
                 break;
 
@@ -186,7 +186,7 @@
                   default:
                     // TODO throw ?
                   }
-                  return line.replace("%" + identifier, replaceString);
+                  return line.replace("%" + identifier, function() { return replaceString; });
                 };
                 break;
 
@@ -209,7 +209,7 @@
                       (param + array(spacelen + 1).join(" ")).slice(-max): // lpad
                       (array(spacelen + 1).join(" ") + param).slice(-max); // rpad
                   }
-                  return line.replace("%" + identifier, replaceString);
+                  return line.replace("%" + identifier, function() { return replaceString; });
                 };
                 break;
               default:
