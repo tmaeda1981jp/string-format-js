@@ -127,6 +127,8 @@ String format function for javascript.
 '#{name}'.format({name:'Takashi Maeda'}) === 'Takashi Maeda'
 '#{first} #{last}'.format({first:'Takashi', last:'Maeda'}) === 'Takashi Maeda'
 '#{a} #{b}, #{c} #{d}'.format(a:'Easy', b:'come', c:'easy', d:'go'}) === 'Easy come, easy go'
+'#{a} #{b}, #{a} #{c}'.format({a:'Easy', b:'come', c:'go'}) === 'Easy come, Easy go'
+'#{a} #{a} #{a}'.format({a:'hello'}) === 'hello hello hello'
 ```
 
 ## Installation
