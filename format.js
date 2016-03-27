@@ -25,7 +25,8 @@
               switch(true) {
               case /^#\{(\w+)\}*$/.test(identifier):
                 this.formatter = function(line, param) {
-                  return line.replace('#{' + RegExp.$1 + '}', param[RegExp.$1]);
+                  var re = new RegExp('#{' + RegExp.$1 + '}', 'g');
+                  return line.replace(re, param[RegExp.$1]);
                 };
                 break;
               case /^([ds])$/.test(identifier):

@@ -380,6 +380,18 @@ describe("format.js", function() {
           d: 'go'
         })).to.equal('Easy come, easy go');
       });
+      it("'#{a} #{b}, #{a} #{c}'.format({a:'Easy', b:'come', c:'go'}) === 'Easy come, Easy go'", function() {
+        expect('#{a} #{b}, #{a} #{c}'.format({
+          a: 'Easy',
+          b: 'come',
+          c: 'go'
+        })).to.equal('Easy come, Easy go');
+      });
+      it("'#{a} #{a} #{a}'.format({a:'hello'}) === 'hello hello hello'", function() {
+        expect('#{a} #{a} #{a}'.format({
+          a: 'hello'
+        })).to.equal('hello hello hello');
+      });
     });
   });
 });
