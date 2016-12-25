@@ -1,7 +1,6 @@
 # string-format-js
 
-[![Build Status](https://travis-ci.org/tmaeda1981jp/string-format-js.png?branch=master)](https://travis-ci.org/tmaeda1981jp/string-format-js)
-
+![License](https://img.shields.io/badge/license-MIT-blue.svg) [![NPM version](http://img.shields.io/npm/v/string-format-js.svg)](https://npmjs.org/package/string-format-js) [![Build Status](https://travis-ci.org/tmaeda1981jp/string-format-js.png?branch=master)](https://travis-ci.org/tmaeda1981jp/string-format-js) [![Coverage Status](https://coveralls.io/repos/github/tmaeda1981jp/string-format-js/badge.svg?branch=master)](https://coveralls.io/github/tmaeda1981jp/string-format-js?branch=master) [![Downloads](https://img.shields.io/npm/dm/string-format-js.svg)](https://www.npmjs.com/package/string-format-js)
 
 ## Synopsis
 
